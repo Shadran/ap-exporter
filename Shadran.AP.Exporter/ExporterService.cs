@@ -15,7 +15,6 @@ namespace Shadran.AP.Exporter
         private readonly TrackerMetricsService _metricsService;
         private readonly APTrackerReader _reader;
         private readonly Random _random;
-        private const string TRACKER_ID = "GkC9ojFYQuW0lyY5k9fK6w";
 
         public ExporterService(IOptions<ExporterOptions> options, TrackerMetricsService metricsService, APTrackerReader reader)
         {
