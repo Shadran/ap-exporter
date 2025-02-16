@@ -1,11 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Shadran.Ap.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shadran.AP.Exporter
 {
@@ -35,7 +30,10 @@ namespace Shadran.AP.Exporter
 
         private async Task UpdateData(string trackerId)
         {
-            var trackerDatas = await _reader.Read(trackerId);
+            IEnumerable<TrackerData> trackerDatas = await _reader.Read(trackerId);
+            trackerDatas = trackerDatas
+                .Where(t => !_options.Filters.Players.Contains(t.Player))
+                .Where(t => !_options.Filters.Games.Contains(t.Game));
             if (!trackerDatas.Any()) return;
             foreach (var d in trackerDatas)
             {

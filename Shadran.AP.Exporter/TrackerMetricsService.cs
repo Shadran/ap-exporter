@@ -36,6 +36,7 @@ namespace Shadran.Ap.Services
                 return _trackerDatas.Select(x => new Measurement<int>(x.Value.CurrentChecks, [
                     new KeyValuePair<string, object?>("player.name", x.Value.Player),
                     new KeyValuePair<string, object?>("player.total_checks", x.Value.TotalChecks),
+                    new KeyValuePair<string, object?>("player.game", x.Value.Game),
                     new KeyValuePair<string, object?>("tracker.id", x.Value.TrackerId),
                 ]));
             }
@@ -47,6 +48,7 @@ namespace Shadran.Ap.Services
             {
                 return _trackerDatas.Select(x => new Measurement<int>(x.Value.TotalChecks, [
                     new KeyValuePair<string, object?>("player.name", x.Value.Player),
+                    new KeyValuePair<string, object?>("player.game", x.Value.Game),
                     new KeyValuePair<string, object?>("tracker.id", x.Value.TrackerId),
                 ]));
             }

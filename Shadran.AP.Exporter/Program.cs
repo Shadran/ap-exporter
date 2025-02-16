@@ -5,6 +5,7 @@ using OpenTelemetry.Resources;
 using Shadran.Ap.Services;
 using Shadran.AP.Exporter;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConsole();
@@ -31,6 +32,8 @@ builder.Services.Configure<ExporterOptions>(o =>
 {
     o.TrackerId = builder.Configuration["Archipelago:TrackerId"]!;
     o.PollingSeconds = int.Parse(builder.Configuration["Archipelago:PollingSeconds"]!);
+    o.Filters.Games = builder.Configuration.GetSection("Archipelago:Filters:Games")?.Get<string[]>() ?? [];
+    o.Filters.Players = builder.Configuration.GetSection("Archipelago:Filters:Players")?.Get<string[]>() ?? [];
 });
 builder.Services.AddHostedService<ExporterService>();
 

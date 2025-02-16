@@ -10,5 +10,12 @@ namespace Shadran.AP.Exporter
     {
         public string TrackerId { get; set; }
         public int PollingSeconds { get; set; }
+        public ArchipelagoFilters Filters { get; set; } = new();
+    }
+
+    public class ArchipelagoFilters
+    {
+        public string[] Games { get; set; } = [];
+        public string[] Players { get; set; } = [];
     }
 }

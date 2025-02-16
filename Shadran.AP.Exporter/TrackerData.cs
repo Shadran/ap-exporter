@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shadran.AP.Exporter
 {
-    public record TrackerData(string Player, int CurrentChecks, int TotalChecks, string TrackerId)
+    public record TrackerData(string Player, int CurrentChecks, int TotalChecks, string TrackerId, string Game)
     {
     }
 }
